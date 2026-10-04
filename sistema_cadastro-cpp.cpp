@@ -11,7 +11,7 @@ int main()
     string senha;
     const string USUARIO_VALIDO = "admin";
     const string SENHA_VALIDA = "1234";
-    
+    const int MAX_TENTATIVAS = 3;
     
     /*Pergunta da IDADE e reserva da idade na variavel IDADE*/
     /* << Operador de impressão da ne tela | >> Operador de reserva em uma variável*/
@@ -20,9 +20,10 @@ int main()
     
     
     int tentativa = 1;
-    while (tentativa <= 3) {
+    while (tentativa <= MAX_TENTATIVAS) {
+        
         /*Pergunta pelo USUÁRIO e reserva na variável USUÁRIO*/
-        /* << Operador de impressão da ne tela PODE SER CONCATENADO COM OUTROS (ANÁLOGO AO + EM OUTRAS LINGUAGENS)*/
+        /* << Operador de impressão da ne tela PODE SER CONCATENADO COM OUTROS (ANEXANDO O QUE FOI COLOCADO NO FLUXO DE SAÍDA)*/
         cout << endl << "Digite seu usuário: ";
         cin >> usuario;
             
@@ -30,19 +31,15 @@ int main()
         cout << endl << "Digite sua senha: ";
         cin >> senha;
         
-        
-        /* Teste se usuário e senha estão corretos */
-         /* USO DO FLUXO DE CÓDIGO OU IF/ELSE PARA MANIPULAR O ANDAMENTO DO ALGORITMO */
-        bool usuario_ok = (usuario == USUARIO_VALIDO);
-        bool senha_ok = (senha == SENHA_VALIDA);
-        
          if (usuario == USUARIO_VALIDO && senha == SENHA_VALIDA) {
             cout << endl << "Acesso liberado.";
             break;
         } else {
-            cout << endl << "-----Acesso negado!-----" << endl << "Restam: " << 3 - tentativa << " tentativas." << endl;
+            cout << endl << "-----Acesso negado!-----" << endl << "Restam: " << MAX_TENTATIVAS - tentativa << ((MAX_TENTATIVAS - tentativa == 1) ? " tentativa" : " tentativas") << endl;
+            if (tentativa == MAX_TENTATIVAS) {
+                cout << "Quantidade de tentativas esgotadas. Tente novamente mais tarde.";
+            }
             tentativa ++;
-            continue;
         }
     }
     
